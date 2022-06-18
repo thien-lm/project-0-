@@ -1,108 +1,43 @@
-package  com.mygdx.Spritess;
+package com.mygdx.Spritess;
 
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Input;
 import com.badlogic.gdx.ai.pfa.GraphPath;
-//import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.graphics.g2d.TextureRegion;
-//import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.physics.box2d.Body;
-import com.badlogic.gdx.physics.box2d.BodyDef;
-import com.badlogic.gdx.physics.box2d.CircleShape;
-import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.utils.Queue;
 import com.mygdx.forAstar.City;
 import com.mygdx.forAstar.CityGraph;
 
-public class testAGV {
+public class testAGV extends BodyPhysic {
 
-	public World world;
-	public Body b2body;
+	// re-define world and b2body make bugs here
+	// public World world;
+	// public Body b2body;
+	// WHY?
+
 	public float PosX = 0, PosY = 0;
-	public int speed = 1;
-	public TextureRegion texture;
 	testMainPlayer testMain;
 
 	CityGraph cityGraph;
 	float deltaX = 0;
 	float deltaY = 0;
 	public boolean reachend = false;
-	BodyDef bdef = new BodyDef();
-	public static int count = 0;
-	public static boolean canRender = true;
-
 	City previousCity;
 	Queue<City> pathQueue = new Queue<>();
 
-	public testAGV(World world) {
-
-		this.world = world;
-		defineMario();
-	}
-
-	public testAGV(World world, CityGraph cityGraph, City start) {
-		this.cityGraph = cityGraph;
-		this.PosX = start.x * 32 / 26;
-		this.PosY = start.y * 32 / 26;
-		this.previousCity = start;
-		this.world = world;
-		// this.test
-		defineMario();
-	}
+	public static int count = 0;
+	public static boolean canRender = true;
 
 	public testAGV(World world, CityGraph cityGraph, City start, testMainPlayer testMain) {
+		super(world);
 		this.cityGraph = cityGraph;
 		this.PosX = start.x * 32 / 26;
 		this.PosY = start.y * 32 / 26;
 		this.previousCity = start;
-		this.world = world;
+		// this.world = world;
+
 		this.testMain = testMain;
-		defineMario();
-	}
-
-	public void defineMario() {
-		BodyDef bdef = new BodyDef();
-		bdef.position.set(PosX, PosY);
-		bdef.type = BodyDef.BodyType.DynamicBody;
-		b2body = world.createBody(bdef);
-
-		FixtureDef fdef = new FixtureDef();
-		CircleShape shape = new CircleShape();
-		shape.setRadius(13);
-
-		fdef.shape = shape;
-		b2body.createFixture(fdef);
-		shape.dispose();
-	}
-
-	public void HandleInput() {
-		if (Gdx.input.isKeyPressed(Input.Keys.W)) {
-			if (this.b2body.getLinearVelocity().y <= 9)
-
-				this.b2body.applyLinearImpulse(new Vector2(0, 10f), this.b2body.getWorldCenter(), true);
-
-		} else if (Gdx.input.isKeyPressed(Input.Keys.S)) {
-			if (this.b2body.getLinearVelocity().y >= -9)
-
-				this.b2body.applyLinearImpulse(new Vector2(0, -10f), this.b2body.getWorldCenter(), true);
-		}
-
-		else if (Gdx.input.isKeyPressed(Input.Keys.A)) {
-			if (this.b2body.getLinearVelocity().x >= -9)
-
-				this.b2body.applyLinearImpulse(new Vector2(-10f, 0), this.b2body.getWorldCenter(), true);
-		}
-
-		else if (Gdx.input.isKeyPressed(Input.Keys.D)) {
-			if (this.b2body.getLinearVelocity().x >= -9)
-
-				this.b2body.applyLinearImpulse(new Vector2(10f, 0), this.b2body.getWorldCenter(), true);
-		} else {
-			this.b2body.setLinearVelocity(0f, 0f);
-		}
+		super.defineAgent(PosX, PosY);
 	}
 
 	private void render() {

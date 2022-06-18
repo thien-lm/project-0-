@@ -10,21 +10,25 @@ import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.World;
 
 public class BodyPhysic {
+	
 	public World world;
 	public Body b2body;
 	public int speed = 1;
 	
+	public BodyPhysic() {
+	}
+	
 	public BodyPhysic(World world) {
         this.world = world;
-        defineBody();
 	}
+	
 	
 	public BodyPhysic(World world, int x, int y) 
 	{
 		this.world = world;
-		defineAgent(x, y);
+		
 	}
-	
+
 	public void defineBody() {
 		BodyDef bdef = new BodyDef();
 		bdef.position.set(30, 448);
@@ -40,9 +44,9 @@ public class BodyPhysic {
 		shape.dispose();
 	}
 	
-	public void defineAgent(int x, int y) {
+	public void defineAgent(float posX, float posY) {
 		BodyDef bdef = new BodyDef();
-		bdef.position.set(x, y);
+		bdef.position.set(posX, posY);
 		bdef.type = BodyDef.BodyType.DynamicBody;
 		b2body = world.createBody(bdef);
 

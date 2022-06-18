@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.8" tiledversion="1.8.4" orientation="orthogonal" renderorder="right-down" width="52" height="28" tilewidth="32" tileheight="32" infinite="0" nextlayerid="14" nextobjectid="123">
+<map version="1.8" tiledversion="1.8.4" orientation="orthogonal" renderorder="right-down" width="52" height="28" tilewidth="32" tileheight="32" infinite="0" nextlayerid="14" nextobjectid="126">
  <editorsettings>
   <export target="tilemaps/json/hospital2.json" format="json"/>
  </editorsettings>
@@ -370,7 +370,6 @@
   <object id="8" x="1056" y="96" width="32" height="128"/>
   <object id="13" x="1120" y="96" width="384" height="128"/>
   <object id="15" x="832" y="320" width="384" height="256"/>
-  <object id="16" x="1312" y="320" width="192" height="256"/>
   <object id="27" x="160" y="256" width="32" height="32"/>
   <object id="28" x="224" y="256" width="32" height="32"/>
   <object id="29" x="288" y="256" width="32" height="32"/>
@@ -420,7 +419,6 @@
   <object id="81" x="1056" y="672" width="29.1922" height="121.648"/>
   <object id="82" x="160" y="320" width="96" height="256"/>
   <object id="83" x="-25.4523" y="673.328" width="4.62769" height="2.31384"/>
-  <object id="85" x="1279.56" y="-136.517"/>
   <object id="90" x="32" y="480" width="96" height="352"/>
   <object id="94" x="1536" y="480" width="96" height="352"/>
   <object id="100" x="640" y="96" width="384" height="128"/>
@@ -434,6 +432,9 @@
   <object id="118" x="640" y="256" width="32" height="32"/>
   <object id="119" x="32" y="832" width="1600" height="32"/>
   <object id="121" x="160" y="672" width="384" height="128"/>
+  <object id="123" x="1312" y="320" width="192" height="256"/>
+  <object id="124" x="1591.92" y="1006.52"/>
+  <object id="125" x="224.443" y="1029.66"/>
  </objectgroup>
  <layer id="3" name="ground" width="52" height="28">
   <data encoding="csv">

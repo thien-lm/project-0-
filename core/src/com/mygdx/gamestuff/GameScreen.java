@@ -20,6 +20,7 @@ import com.mygdx.forAstar.Street;
 import com.mygdx.game.MyGdxGame;
 import com.mygdx.tools.B2WorldCreator;
 
+
 public class GameScreen implements Screen {
     //basic element
 	MyGdxGame mygame;
@@ -55,8 +56,15 @@ public class GameScreen implements Screen {
 		tileMap.init();
 		
 		world = new World(new Vector2(0, 0), true);
-		b2dr = new Box2DDebugRenderer();
+		b2dr = new Box2DDebugRenderer(
+				/*drawBodies*/         true,
+                /*drawJoints*/         false,
+                /*drawAABBs*/          false,
+                /*drawInactiveBodies*/ false,
+                /*drawVelocities*/     false,
+                /*drawContacts*/       true) ;
         new B2WorldCreator(world, tileMap);
+       // client.sendData("ping".getBytes());
         testMain = new testMainPlayer(world);
 		testA = new testAgent(world,900, 476*32/26+6);
 		testB = new testAgent(world,300, 476*32/26+6);
@@ -65,11 +73,14 @@ public class GameScreen implements Screen {
 	    batch = new SpriteBatch();
 	    font = new BitmapFont();
         cityGraph = new CityGraph();
+  
 		createNode();
+		
 	}
 
 	@Override
 	public void render(float delta) {
+	
 		world.step(1 / 60f, 6, 2);
 		Gdx.gl.glClearColor(0, 0, 0, 1);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
@@ -77,13 +88,11 @@ public class GameScreen implements Screen {
 		for (Street street : cityGraph.streets) {
 			street.render(shapeRenderer);
 		}
-
 		
 		for (City city : cityGraph.cities) {
 			city.render(shapeRenderer, batch, font, false);// Draw all cities blue
 		}
 
-		
 		for (City city : cityPath) {
 			city.render(shapeRenderer, batch, font, true);// Draw cities in path green
 		}
@@ -96,9 +105,13 @@ public class GameScreen implements Screen {
 		b2dr.render(world, camera.combined);
         testMain.HandleInput();
      
+       
+		
+		
 		// Rendering code
         batch.begin();
-        
+    	
+		
 		testA.setDisturbTypeLR();
 		testB.setDisturbTypeLR();
 

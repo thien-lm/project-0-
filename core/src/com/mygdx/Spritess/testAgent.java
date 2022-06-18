@@ -1,40 +1,21 @@
 package com.mygdx.Spritess;
 
 import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.physics.box2d.Body;
-import com.badlogic.gdx.physics.box2d.BodyDef;
-import com.badlogic.gdx.physics.box2d.CircleShape;
-import com.badlogic.gdx.physics.box2d.FixtureDef;
+//import com.badlogic.gdx.physics.box2d.Body;
+//import com.badlogic.gdx.physics.box2d.BodyDef;
+//import com.badlogic.gdx.physics.box2d.CircleShape;
+//import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.World;
 
-public class testAgent {
+public class testAgent extends BodyPhysic {
 	//add object of this class to physic world
-	public World world;
-	public Body b2body;
 	private int counter = 0;
 
-	public testAgent(World world, int x, int y) 
-	{
-		this.world = world;
-		defineAgent(x, y);
+	public testAgent(World world, int x, int y) {
+		super(world);
+		super.defineAgent(x, y);
 	}
 
-	public void defineAgent(int x, int y) 
-	{
-		BodyDef bdef = new BodyDef();
-		bdef.position.set(x, y);//doan nay hard code do deo biet lam
-		bdef.type = BodyDef.BodyType.DynamicBody;
-		b2body = world.createBody(bdef);
-
-		FixtureDef fdef = new FixtureDef();
-		CircleShape shape = new CircleShape();
-		shape.setRadius(13);
-
-		fdef.shape = shape;
-		b2body.createFixture(fdef);
-		shape.dispose();
-	}
-	
 	int xRand = 0;
 	//agent left-right
 	public void setDisturbTypeLR()
