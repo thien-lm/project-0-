@@ -15,7 +15,7 @@ public class MyGdxGame extends Game {
 		setScreen(gameScreen);
 		music = Gdx.audio.newMusic(Gdx.files.internal("backgroundsound.mp3"));
 		music.play();
-		music.setVolume(50);
+		music.setVolume(10);
 		music.setLooping(true);
 	}
 
